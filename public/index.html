@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Chatbot - Deforestation Awareness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="chat-container">
+    <!-- Header -->
+    <div class="chat-header">
+      <span onclick="greetUser()">🌿 AI Chatbot</span>
+      <div class="menu-icon" onclick="toggleMenu()">⋮</div>
+    </div>
+
+    <!-- Menu Popup -->
+    <div class="menu-popup hidden" id="menuPopup">
+      <button onclick="alert('🔐 Login Coming Soon')">Login</button>
+      <button onclick="alert('⚙️ Settings Coming Soon')">Settings</button>
+      <div class="lang-label">🌍 Select Language:</div>
+      <div class="language-options">
+        <button data-lang="en" onclick="selectLanguage('en')">English</button>
+        <button data-lang="hi" onclick="selectLanguage('hi')">Hindi</button>
+        <button data-lang="es" onclick="selectLanguage('es')">Spanish</button>
+        <button data-lang="fr" onclick="selectLanguage('fr')">French</button>
+        <button data-lang="hin" onclick="selectLanguage('hin')">Hinglish</button>
+        <button data-lang="de" onclick="selectLanguage('de')">German</button>
+      </div>
+
+    </div>
+
+    <!-- Chatbox -->
+    <div id="chatbox" class="chatbox"></div>
+
+    <!-- Scroll to Top -->
+    <div id="scrollTopBtn" class="scroll-top hidden" onclick="scrollToTop()">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+
+    <!-- Input Area -->
+    <div class="input-area">
+      <label for="imageInput">
+        <i class="ri-attachment-2" id="attachIcon"></i>
+      </label>
+      <input type="file" id="imageInput" accept="image/*" hidden />
+
+      <textarea id="userInput" rows="1" placeholder="Type a message..." oninput="autoResize(this)"></textarea>
+
+      <button onclick="sendMessage()">
+        <i class="ri-send-plane-line"></i>
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
