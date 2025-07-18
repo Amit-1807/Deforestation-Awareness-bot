@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+
+# Environment files
+.env
+
+# Uploads directory (runtime-generated files, images, etc.)
+uploads/
+
+# Ollama models (optional, if you ever cache anything locally)
+ollama/
+
+# Logs
+logs/
+*.log
+
+# VS Code settings
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
