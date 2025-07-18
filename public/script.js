@@ -62,7 +62,7 @@ async function sendMessage() {
   showTypingIndicator();
 
   try {
-    const res = await fetch(`${API_BASE}/chat`, {
+    const res = await fetch("http://localhost:5000/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
