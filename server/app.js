@@ -1,3 +1,4 @@
+// server/app.js
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -5,16 +6,16 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Import routes
+// Routes
 import chatRoutes from "./routes/chat.js";
 import emailRoutes from "./routes/email.js";
 import translateRoutes from "./routes/translate.js";
 import imageRoutes from "./routes/image.js";
 
-// Optional utility import (if needed)
-
 dotenv.config();
 const app = express();
+
+// Path setup
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Middleware
@@ -28,7 +29,14 @@ app.use("/api/email", emailRoutes);
 app.use("/api/translate", translateRoutes);
 app.use("/api/image", imageRoutes);
 
-// Example simple AI route (optional, keep only if needed)
+// ✅ Serve static frontend files from public folder
+app.use(express.static(path.join(__dirname, "../public")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
+});
+
+// Optional simple Gemini endpoint (you can keep or remove this)
 app.post("/api/gemini", async (req, res) => {
   const { text } = req.body;
   if (!text?.trim()) return res.status(400).json({ message: "No input text provided." });
@@ -53,12 +61,10 @@ app.use((err, req, res, next) => {
 });
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log("✅ MongoDB connected"))
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB connected"))
   .catch(err => console.error("❌ MongoDB error:", err));
 
-// Start Server
+// Server Start
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
